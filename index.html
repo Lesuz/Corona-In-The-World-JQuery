@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Corona In The World</title>
+        <meta charset="UTF-8">
+        <link rel="stylesheet" href="styles.css"> 
+        <!-- Adding a font from google-->
+        <link rel="preconnect" href="https://fonts.gstatic.com">
+        <link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@500&display=swap" rel="stylesheet">
+        <script src="api.js"></script>
+        <script src="http://code.jquery.com/jquery-2.1.4.min.js"></script>
+    </head>
+    <body>
+        <div id="bg">
+            <header id="header">
+                <div class="wrapper">
+                    <!-- Page title-->
+                    <h1 id="navbar">Corona in the World</h1>
+                    <h6 id="year">2020</h6>
+                </div>
+            </header>
+            <main>
+                <div class="wrapper">
+                    <!-- Searchbar with button-->
+                    <div id="searchbar">
+                        <input id="input" type="text" placeholder="Search by country" />
+                        <button id="go" type="button">Go!</button>
+                    </div >
+                    <!-- warning message if input is wrong-->
+                    <div id="achtung">
+                        <h3 id="warningmessage"></h3>
+                    </div>
+                    <!-- Box that has all the displayable text-->
+                    <div id="information" >
+                        <h2 id="country"></h2>
+                        <h4 id="cases"></h4>          
+                    </div>
+                    <div id="casesbymonth" >
+                        <h3 id="casesbymonthtitle">Cases in month:</h3>
+                        <!-- table to show cases by month-->
+                        <table>
+                            <tr>
+                                <td>January</td>
+                                <td id="casesinjan"></td>
+                                <td>July</td>
+                                <td id="casesinjul"></td>
+                            </tr>
+                            <tr>
+                                <td>February</td>
+                                <td id="casesinfeb"></td>
+                                <td>August</td>
+                                <td id="casesinaug"></td>
+                            </tr>
+                            <tr>
+                                <td>March</td>
+                                <td id="casesinmar"></td>
+                                <td>September</td>
+                                <td id="casesinsep"></td>
+                            </tr>
+                            <tr>
+                                <td>April</td>
+                                <td id="casesinapril"></td>
+                                <td>October</td>
+                                <td id="casesinoct"></td>
+                            </tr>
+                            <tr>
+                                <td>May</td>
+                                <td id="casesinmay"></td>
+                                <td>November</td>
+                                <td id="casesinnov"></td>
+                            </tr>
+                            <tr>
+                                <td>June</td>
+                                <td id="casesinjun"></td>
+                                <td>December</td>
+                                <td id="casesindec">No Data </td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+                <div id="footer">
+                    <!-- giving credits in footer-->
+                    <div class="wrapper">
+                        <p>Website made by: Susanna Hämäläinen</p>
+                        <p>API used: COVID 19 API https://covid19api.com/</p>
+                        <p>Background image by: AlexAntropoc86 on pixabay.com</p>
+                    </div>
+                </div>
+            </main>
+        </div>
+    </body>
+</html>
