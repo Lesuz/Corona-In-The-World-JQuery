@@ -2,6 +2,7 @@ window.onload = function(){
 
     
     // get elements that are needed and save them into new variables
+    // this step is not needed with jquery but can make it easier 
     let buttonGo = $("#go");
     let casesinmonth = $("#casesbymonth");
     let inputtedCountry = $("#input");
@@ -18,7 +19,6 @@ window.onload = function(){
     // Add event listener to the Go-button
     buttonGo.click(function () {
 
-        console.log("HAIII");
         // Save the inputted string into a variable
         let wantedCountry = inputtedCountry.val() ;
         warning.html = "";
@@ -36,24 +36,27 @@ window.onload = function(){
         // Check if searchbar is empty
         if(wantedCountry === "" || wantedCountry === " "){
             $("#warningmessage").html("Invalid input, try typing a country");
-            $("#information").css("display", "none");
+            warning.slideDown();
+            //$("#information").css("display", "none");
 
         // TODO - does the inputted country exist
         }else{
+            warning.slideUp();
             // TODO - input validation, does the wanted country exists
+            informationbox.slideDown();
+            casesinmonth.slideDown();
             displayCountry.html(wantedCountry);
-            let xmlhttp = new XMLHttpRequest();
+            //let xmlhttp = new XMLHttpRequest();
 
-            // need to input the date in this form year-month-date
-            xmlhttp.open("GET", "https://api.covid19api.com/total/country/" + wantedCountry.toLowerCase() + "/status/confirmed?from=2020-01-01T00:00:00Z&to="+ year + "-" + month + "-" + date + "T00:00:00Z", true);
-            xmlhttp.send();
+            var settings = {
+                "url": "https://api.covid19api.com/total/country/" + wantedCountry.toLowerCase() + "/status/confirmed?from=2020-01-01T00:00:00Z&to="+ year + "-" + month + "-" + date + "T00:00:00Z",
+                "method": "GET",
+                "timeout": 0,
+            };
 
-            xmlhttp.onreadystatechange=function() {
-                if(xmlhttp.readyState==4 && xmlhttp.status==200){
-                    // save gotten data into variable
-                    let data = xmlhttp.responseText;
-                    // parse the data
-                    let parsedData = JSON.parse(data) ;
+            // Named parsedData because it is used so much I am too lazy to change every parsedData name
+            $.ajax(settings).done(function (parsedData) { 
+                console.log(parsedData);
 
                     // get the cases - number from the last array and display it to the right place
                     let caseAmount = parsedData[parsedData.length -1].Cases
@@ -63,7 +66,6 @@ window.onload = function(){
                     // saving the length of the table into variable - one day = one index
                     let tablelength = parsedData.length;
 
-                    // TODO - Figure out why it shows the cases one month off
                     for ( let i = 0; i < tablelength; i++){
                         // date is a string in the array, and I want to use the month to get every months cases
                         // so I use substring() to get the indexes of 5 and 6
@@ -143,10 +145,8 @@ window.onload = function(){
 
 
                     }
-                }
-            }
+            })
             // change to "block" to make visible
-            // at this point the is going to be text in the div
             informationbox.css("display", "block");
             casesinmonth.css("display","block");
 
