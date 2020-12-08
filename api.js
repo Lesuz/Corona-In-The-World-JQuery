@@ -56,11 +56,10 @@ window.onload = function(){
 
             // Named parsedData because it is used so much I am too lazy to change every parsedData name
             $.ajax(settings).done(function (parsedData) { 
-                console.log(parsedData);
 
                     // get the cases - number from the last array and display it to the right place
                     let caseAmount = parsedData[parsedData.length -1].Cases
-                    displayCases.html("Cases:" + caseAmount);
+                    displayCases.html("Cases: " + caseAmount);
 
                     // look for the information for every month
                     // saving the length of the table into variable - one day = one index
